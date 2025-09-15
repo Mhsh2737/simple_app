@@ -16,7 +16,4 @@ def save_parking(name, model, plate, color, datetime):
     connection.commit()
     connection.close()
 
-    #def save(id, title, teacher, unit):
-        #connection = sqlite3.connect('mft.db')
-       # connection.cursor().execute("insert into lessons (id,title,teacher,unit) values (?,?,?,?)",
-       #                             [id, title, teacher, unit])
+    
