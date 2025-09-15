@@ -12,9 +12,10 @@ def save_click():
         name_validator(name.get())
         model_validator(model.get())
         plate_validator(plate.get())
-        save_parking(name.get(),model.get(),plate.get(),color.get(),datetime.set("%m/%d/%Y %I:%M:%S %p"))
+        save_parking(name.get(),model.get(),plate.get(),color.get())
         msg.showinfo("Saved", "Parking Saved")
     except Exception as e:
+        e.with_traceback()
         msg.showerror("error",f"{e}")
 
 window = Tk()
@@ -40,12 +41,13 @@ Entry(window,textvariable=plate,width=24).place(x=100,y=110)
 #color
 color = StringVar(value="white")
 Label(window, text="Color",bg="dark blue",fg="white").place(x=27,y=150)
-(ttk.Combobox(
+ttk.Combobox(
     window,
     values = ["white","black","red"],
     width=21,
-    textvariable=color
-).place(x=100,y=150))
+    textvariable=color,
+    state="readonly"
+).place(x=100,y=150)
 
 #date time
 #current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -53,7 +55,7 @@ Label(window, text="Color",bg="dark blue",fg="white").place(x=27,y=150)
 
 datetime = StringVar(value=datetime.datetime.now().strftime("%m/%d/%Y %I:%M:%S %p"))
 Label(window, text="datetime",bg="dark blue",fg="white").place(x=27,y=190)
-Entry(window,textvariable=datetime,width=24).place(x=100,y=190)
+Entry(window,textvariable=datetime,width=24,state="readonly").place(x=100,y=190)
 
 Button(window, text="Save",bg="dark blue",fg="white",width=9,command=save_click).place(x=100,y=250)
 
